@@ -57,7 +57,7 @@ const Car: React.FC<CarProps> = () => {
           <Typography>Car Registration Number: {parkState[id-1].reg_no}</Typography>
           <Typography>Time parked at: {parkState[id-1].parked_at}</Typography> 
           <Typography>Current Time: {curr}</Typography>
-          <Typography>Fare: {fare}</Typography>
+          <Typography>Fare: {fare}$</Typography>
         </Box>
         <Button onClick={handlePay} >Pay</Button>
       </Box>
