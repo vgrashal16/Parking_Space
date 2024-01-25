@@ -2,14 +2,14 @@ import { Box, Button, Typography } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { parkingState } from '../atoms/parkingState';
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface CarProps {
   id: number; 
 }
 
 const Car: React.FC<CarProps> = () => {
-
+  const navigate = useNavigate();
   const [parkState, setparkState] = useRecoilState(parkingState)
   const [fare, setFare] = useState(0);
   const location = useLocation();
@@ -17,10 +17,43 @@ const Car: React.FC<CarProps> = () => {
   const curr = new Date().toLocaleTimeString();
   console.log(id);
   
-
   
+  const fetchPay = async() => {
+    const body = {"car-registration": parkState[id-1].reg_no , "charge": fare}
+    // console.log(body)
+    const res = await fetch('https://httpstat.us/200', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    });
+
+    const data = await res.json();
+    console.log(data)
+  }
+  
+  const payDone = () => {
+
+    setparkState((prevParkState) => {
+      return prevParkState.map((parkingSpace) => {
+        if (parkingSpace.id === id) {
+          return {
+            ...parkingSpace,
+            parked: false,
+            parked_at: null, 
+            reg_no: null,
+          };
+        } else {
+          return parkingSpace;
+        }
+      });
+    });
+    navigate('/lot');
+  }
+
   const handlePay = () => {
     console.log("clicked ");
+    fetchPay();
+    setTimeout(payDone, 2000);
   }
   
   useEffect(() => {
