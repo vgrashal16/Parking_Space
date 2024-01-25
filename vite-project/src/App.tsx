@@ -3,6 +3,7 @@ import Homepage from './components/homepage';
 import ParkingLot from './components/parkingLot';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Register from './components/register';
+import Car from './components/car';
 
 const App: React.FC = () => { {
     return (
@@ -11,6 +12,7 @@ const App: React.FC = () => { {
           <Route path="/" element={<Homepage />} />
           <Route path="/lot" element={<ParkingLot />} />
           <Route path="/lot/register" element={<Register />} />
+          <Route path="/lot/car" element={<Car id={0}/>} />
         </Routes>
       </Router>
     );

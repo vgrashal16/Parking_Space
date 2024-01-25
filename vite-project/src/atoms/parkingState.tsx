@@ -4,8 +4,8 @@ import { parkingSpace } from './parkingSpace';
 export interface ParkingObject {
   id: number;
   parked: boolean;
-  parked_at: null | number; // Can be null or a timestamp (date.now())
-  reg_no: null | string; // Can be null or a string
+  parked_at: null | string; 
+  reg_no: null | string; 
 }
 
 export const initializeParkingState = selector<ParkingObject[]>({
@@ -13,7 +13,7 @@ export const initializeParkingState = selector<ParkingObject[]>({
   get: ({ get }) => {
     const spaces = get(parkingSpace);
     return Array.from({ length: spaces }, (_, index) => ({
-      id: index + 1, // Assuming ids start from 1
+      id: index + 1, 
       parked: false,
       parked_at: null,
       reg_no: null,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Grid } from '@mui/material';
-import ParkSpace from './parkSpace'; // Import the parkSpace component
+import ParkSpace from './parkSpace'; 
 import { useRecoilValue } from 'recoil';
 import { parkingState } from '../atoms/parkingState';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,8 @@ const ParkingLot: React.FC = () => {
   const parkState = useRecoilValue(parkingState);
   const numRows = Math.ceil(parkState.length / 5);
   const navigate = useNavigate();
+  console.log(parkState);
+
   
   const handleAdd = () => {
     const availableParking = parkState.filter(obj => !obj.parked);
@@ -16,7 +18,7 @@ const ParkingLot: React.FC = () => {
     if (availableParking.length === 0) {
       throw new Error('No available parking spots');
     }
-    // Select a random object from availableParking
+    // select random object from availableParking
     const randomIndex = Math.floor(Math.random() * availableParking.length);
     const selectedParkingSpot = availableParking[randomIndex];
 
