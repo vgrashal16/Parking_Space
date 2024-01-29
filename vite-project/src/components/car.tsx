@@ -14,6 +14,7 @@ const Car: React.FC<CarProps> = () => {
   const [fare, setFare] = useState(0);
   const [curr, setCurr] = useState<any>();
   const [loading, setLoading] = useState(false);
+  const [isDisabled, setDisabled] = useState<boolean>(true);
   const location = useLocation();
   const id = location.state;
   console.log(id);
@@ -52,7 +53,8 @@ const Car: React.FC<CarProps> = () => {
   }
   
   const handlePay = () => {
-    console.log("clicked ");
+    // console.log("clicked ");
+    setDisabled(false);
     fetchPay();
     setLoading(true); 
     setTimeout(payDone, 2000);    
@@ -82,7 +84,7 @@ const Car: React.FC<CarProps> = () => {
 
   return (
     <>
-    <Button variant='outlined' color= 'secondary' onClick={()=>{navigate('/lot')}} >Go Back</Button>
+    <Button variant='outlined' color= 'secondary' disabled = {!isDisabled} onClick={()=>{navigate('/lot')}} >Go Back</Button>
     <Box
       display="flex"
       justifyContent="center"
@@ -104,7 +106,7 @@ const Car: React.FC<CarProps> = () => {
           <Typography>Current Time: {curr}</Typography>
           <Typography>Fare: {fare}$</Typography>
         </Box>
-        <Button onClick={handlePay} >Pay</Button>
+        <Button onClick={handlePay} disabled={fare === 0}>Pay</Button>
         </>
         )}
       </Box>
