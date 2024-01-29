@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { Button, Container, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import {  useRecoilState } from 'recoil';
 import { parkingSpace } from '../atoms/parkingSpace';
 
 
@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('submit');
+    // console.log('submit');
     navigate(`/lot`);
   };
 
@@ -29,6 +29,7 @@ const HomePage: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <TextField
           label="Enter number of parking spaces"
+          inputProps={{ "data-testid": "parking-spaces-input" }}
           variant="outlined"
           fullWidth
           margin="normal"
@@ -36,7 +37,7 @@ const HomePage: React.FC = () => {
           onChange={handleChange}
         />
         <div style={{ textAlign: 'center' }}>
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary" disabled={space === 0 || space ===""}>
             Submit
           </Button>
         </div>
