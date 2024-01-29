@@ -41,6 +41,7 @@ const Register: React.FC = () => {
 
   return (
     <>
+    <Button variant='outlined' color= 'secondary' onClick={()=>{navigate('/lot')}} >Go Back</Button>
     <Box
       display="flex"
       justifyContent="center"

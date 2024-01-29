@@ -43,7 +43,7 @@ const ParkingLot: React.FC = () => {
         ))}
       </Grid>
     </div>
-    <Button variant='outlined' color='primary' onClick={handleAdd}>ADD</Button>
+    <Button variant='contained' color= 'primary' onClick={handleAdd}>ADD</Button>
     </div>
   );
 }
