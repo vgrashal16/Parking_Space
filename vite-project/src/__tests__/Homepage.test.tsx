@@ -4,9 +4,11 @@ import { MemoryRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
 test('renders without crashing', () => {
-  render(<MemoryRouter>
+  render( <RecoilRoot>
+  <MemoryRouter>
     <HomePage />
   </MemoryRouter>
+  </RecoilRoot>
   );
 });
 

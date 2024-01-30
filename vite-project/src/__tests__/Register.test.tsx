@@ -4,7 +4,7 @@ import { RecoilRoot } from 'recoil';
 import { MemoryRouter } from 'react-router-dom';
 
 test('renders without crashing', () => {
-  render(  <RecoilRoot>
+  render(<RecoilRoot>
     <MemoryRouter>
     <Register />
   </MemoryRouter>

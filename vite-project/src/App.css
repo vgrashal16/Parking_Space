@@ -5,6 +5,8 @@ html, body {
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  background-color: #101414;
+  color: aliceblue;
 }
 
 #root {

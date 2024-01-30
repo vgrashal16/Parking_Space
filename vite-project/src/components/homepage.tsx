@@ -1,16 +1,16 @@
 import React, { ChangeEvent } from 'react';
 import { Button, Container, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import {  useRecoilState } from 'recoil';
+import {  useSetRecoilState } from 'recoil';
 import { parkingSpace } from '../atoms/parkingSpace';
 
 
 const HomePage: React.FC = () => {
-  const [space, setSpace] = useRecoilState<any>(parkingSpace);
+  const setSpace = useSetRecoilState<any>(parkingSpace);
   const navigate = useNavigate();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSpace(e.target.value);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>{
+      setSpace(e.target.value);  
   }
 
 
@@ -20,7 +20,6 @@ const HomePage: React.FC = () => {
     navigate(`/lot`);
   };
 
-
   return (
     <Container maxWidth="sm" style={{ marginTop: '20vh' }}>
       <Typography variant="h3" gutterBottom align="center">
@@ -29,15 +28,17 @@ const HomePage: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <TextField
           label="Enter number of parking spaces"
-          inputProps={{ "data-testid": "parking-spaces-input" }}
-          variant="outlined"
+          inputProps={{ "data-testid": "parking-spaces-input", type: 'number', style: { color: 'aliceblue', backgroundColor: '#21242c', borderRadius: '10px'}}}
+          InputLabelProps={{
+            style: { color: 'aliceblue' },
+          }}
           fullWidth
           margin="normal"
           required
           onChange={handleChange}
         />
         <div style={{ textAlign: 'center' }}>
-          <Button type="submit" variant="contained" color="primary" disabled={space === 0 || space ===""}>
+          <Button type="submit" variant="contained" color= "primary">
             Submit
           </Button>
         </div>
